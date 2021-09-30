@@ -1,7 +1,7 @@
 package com.jshen.jobTracker.controllers;
 
 import com.jshen.jobTracker.Services.AuthService;
-import com.jshen.jobTracker.dto.RegisterRequest;
+import com.jshen.jobTracker.dto.RegisterLoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,13 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity signup(@RequestBody RegisterRequest registerRequest){
-        authService.signup(registerRequest);
+    public ResponseEntity signup(@RequestBody RegisterLoginRequest registerLoginRequest){
+        authService.signup(registerLoginRequest);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody RegisterLoginRequest RegisterLoginRequest){
+
     }
 }
