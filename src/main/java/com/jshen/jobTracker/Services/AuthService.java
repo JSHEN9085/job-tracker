@@ -3,8 +3,12 @@ package com.jshen.jobTracker.Services;
 import com.jshen.jobTracker.dto.RegisterLoginRequest;
 import com.jshen.jobTracker.models.User;
 import com.jshen.jobTracker.repositories.UserRepository;
+import com.jshen.jobTracker.security.JwtProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +24,9 @@ public class AuthService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private JwtProvider jwtProvider;
+
     public void signup(RegisterLoginRequest registerLoginRequest){
         User user = new User();
         user.setUsername(registerLoginRequest.getUsername());
@@ -31,7 +38,11 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
-    public void login(RegisterLoginRequest registerLoginRequest){
+    public String login(RegisterLoginRequest registerLoginRequest){
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(registerLoginRequest.getUsername(),
+                registerLoginRequest.getPassword()));
 
+        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        return jwtProvider.generateToken(authenticate);
     }
 }
