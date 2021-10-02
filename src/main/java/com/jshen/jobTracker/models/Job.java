@@ -23,8 +23,6 @@ public class Job implements Serializable {
     @NotEmpty
     private String title;
 
-    @NotBlank
-    @NotEmpty
     private String link;
 
     @NotBlank
@@ -42,10 +40,11 @@ public class Job implements Serializable {
 
     }
 
-    public Job(@NotBlank @NotEmpty String title, @NotBlank @NotEmpty String link, @NotBlank @NotEmpty LocalDate applicationDate) {
+    public Job(@NotBlank @NotEmpty String title, String link, @NotBlank @NotEmpty LocalDate applicationDate, User user) {
         this.title = title;
         this.link = link;
         this.applicationDate = applicationDate;
+        this.user = user;
         this.isActived = true;
     }
 
