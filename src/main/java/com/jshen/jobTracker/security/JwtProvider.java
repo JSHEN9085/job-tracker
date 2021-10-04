@@ -25,7 +25,7 @@ public class JwtProvider {
         User principal = (User) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(principal.getUsername())
-                .signWith(Keys.secretKeyFor(SignatureAlgorithm.HS512))
+                .signWith(key)
                 .compact();
     }
 

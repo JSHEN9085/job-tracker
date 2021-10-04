@@ -1,6 +1,7 @@
 package com.jshen.jobTracker.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -23,12 +24,13 @@ public class Job implements Serializable {
     @NotEmpty
     private String title;
 
+    @Nullable
     private String link;
 
     @NotBlank
     @NotEmpty
     private LocalDate applicationDate;
-
+    //ex: 20210901
 
     private boolean isActived;
 
