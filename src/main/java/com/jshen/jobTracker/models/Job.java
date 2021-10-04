@@ -1,5 +1,6 @@
 package com.jshen.jobTracker.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.lang.Nullable;
 
@@ -28,11 +29,11 @@ public class Job implements Serializable {
     private String link;
 
     @NotBlank
-    @NotEmpty
+    @JsonFormat(pattern = "dd/mm/yyyy")
     private LocalDate applicationDate;
     //ex: 20210901
 
-    private boolean isActived;
+    private boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="user_id", nullable=false)
@@ -42,12 +43,12 @@ public class Job implements Serializable {
 
     }
 
-    public Job(@NotBlank @NotEmpty String title, String link, @NotBlank @NotEmpty LocalDate applicationDate, User user) {
+    public Job(@NotBlank @NotEmpty String title, String link, LocalDate applicationDate, boolean isActive, User user) {
         this.title = title;
         this.link = link;
         this.applicationDate = applicationDate;
         this.user = user;
-        this.isActived = true;
+        this.isActive = true;
     }
 
     public String getTitle() {
@@ -74,12 +75,12 @@ public class Job implements Serializable {
         this.applicationDate = applicationDate;
     }
 
-    public boolean isActived() {
-        return isActived;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setActived() {
-        isActived = !isActived;
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public User getUser() {

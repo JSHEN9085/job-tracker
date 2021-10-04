@@ -24,6 +24,7 @@ public class JobService {
         job.setTitle(jobDto.getTitle());
         job.setLink(jobDto.getLink());
         job.setApplicationDate(jobDto.getApplicationDate());
+        job.setActive(true);
         job.setUser(authService.getCurrentUser());
         jobRepository.save(job);
     }

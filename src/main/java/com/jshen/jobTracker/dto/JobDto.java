@@ -6,6 +6,7 @@ public class JobDto {
     private String title;
     private String link;
     private LocalDate applicationDate;
+    private boolean isActive;
 
     public String getTitle() {
         return title;
@@ -29,5 +30,13 @@ public class JobDto {
 
     public void setApplicationDate(LocalDate applicationDate) {
         this.applicationDate = applicationDate;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
