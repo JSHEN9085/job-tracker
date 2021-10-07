@@ -7,6 +7,8 @@ import com.jshen.jobTracker.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class JobService {
 
@@ -23,7 +25,9 @@ public class JobService {
         Job job = new Job();
         job.setTitle(jobDto.getTitle());
         job.setLink(jobDto.getLink());
-        job.setApplicationDate(jobDto.getApplicationDate());
+
+        job.setApplicationDate(LocalDate.of(jobDto.getYear(), jobDto.getMonth(), jobDto.getDay()));
+
         job.setActive(true);
         job.setUser(authService.getCurrentUser());
         jobRepository.save(job);

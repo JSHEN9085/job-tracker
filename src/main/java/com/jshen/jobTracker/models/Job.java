@@ -1,6 +1,5 @@
 package com.jshen.jobTracker.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.lang.Nullable;
 
@@ -28,8 +27,7 @@ public class Job implements Serializable {
     @Nullable
     private String link;
 
-    @NotBlank
-    @JsonFormat(pattern = "dd/mm/yyyy")
+//    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd/mm/yyyy")
     private LocalDate applicationDate;
     //ex: 20210901
 

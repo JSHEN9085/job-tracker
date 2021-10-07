@@ -1,11 +1,11 @@
 package com.jshen.jobTracker.dto;
 
-import java.time.LocalDate;
-
 public class JobDto {
     private String title;
     private String link;
-    private LocalDate applicationDate;
+    private int year;
+    private int month;
+    private int day;
     private boolean isActive;
 
     public String getTitle() {
@@ -24,12 +24,28 @@ public class JobDto {
         this.link = link;
     }
 
-    public LocalDate getApplicationDate() {
-        return applicationDate;
+    public int getYear() {
+        return year;
     }
 
-    public void setApplicationDate(LocalDate applicationDate) {
-        this.applicationDate = applicationDate;
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
     }
 
     public boolean isActive() {
